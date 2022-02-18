@@ -4,12 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Group seven project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-    
+   <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><h4>Group_7🚀 </h4></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"><i class="fab fa-github" style="font-size: 30px;"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+       <div class="container">
+           <div class="row mt-5">
+               <div class="col-sm-4">
+                    <div class="card rounded-0" style="width: 18rem;">
+                        <img v-bind:src="lesson.img_url" class="card-img-top rounded-0" alt="...">
+                        <div class="card-body">
+                            <p class="mb-1"><strong>Subject: </strong> {{lesson.subject}}</p>
+                            <p class="mb-1"><strong>Location: </strong> {{lesson.location}}</p>
+                            <p class="mb-1"><strong>Spaces: </strong> {{lesson.spaces}}</p>
+                            <p class="mb-1"><strong>Price: </strong> $ {{lesson.price}}</p>
+                            <button v-on:click="addToCart" class="btn btn-sm btn-primary rounded-0">Add to cart <i class="fas fa-cart-plus"></i></button>
+                        </div>
+                  </div>
+               </div>
+           </div>
+       </div>
+       <footer>
+           <div class="container">
+               <div class="row justify-content-center">
+                   <div class="col-sm-4">
+                        <p class="text-center m-0">Made with ❤️ and Vue js</p>
+                        <p class="text-center m-0">Group 7 | &copy; 2022</p>
+                   </div>
+               </div>
+           </div>
+       </footer>
+   </div>
+   <script>
+       var app = new Vue({
+           el: "#app",
+           data:{
+                lesson: {
+                    subject: "Mathematics",
+                    location: "Italy",
+                    spaces: 5,
+                    price: 500,
+                    img_url: "images/math_image.jpg"
+                }
+           },
+           methods:{
+               addToCart: function(){
+                   if (this.lesson.spaces >= 1) {
+                       this.lesson.spaces -= 1
+                   }
+                   else{
+                       this.lesson.spaces = 0
+                   }
+               }
+           }
+       })
+   </script>
 </body>
 </html>
