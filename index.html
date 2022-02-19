@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
+    <!-- Vue Application scope -->
    <div id="app">
        <!-- Navigation bar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -46,7 +47,7 @@
       <!-- Lesson cards display -->
        <div class="container">
            <div class="row mt-4 justify-content-center">
-               <div class="col-sm-3 mb-3" v-for="lesson in lessons">
+               <div class="col-sm-3 mb-3">
                     <div class="card rounded-0">
                         <img v-bind:src="lesson.img_url" class="myimg card-img-top rounded-0" alt="...">
                         <div class="card-body">
@@ -81,52 +82,23 @@
        var app = new Vue({
            el: "#app",
            data:{
-               lessons: [
-                    {
-                        id: 0,
-                        subject: "Mathematics",
-                        location: "Italy",
-                        spaces: 5,
-                        price: 500,
-                        img_url: "images/math_image.jpg"
-                    },
-                    {
-                        id: 1,
-                        subject: "English",
-                        location: "London",
-                        spaces: 5,
-                        price: 300,
-                        img_url: "images/english_image.jpg"
-                    },
-                    {
-                        id: 2,
-                        subject: "Music",
-                        location: "Greece",
-                        spaces: 5,
-                        price: 600,
-                        img_url: "images/music_image.jpg"
-                    },
-                    {
-                        id: 3,
-                        subject: "Art",
-                        location: "France",
-                        spaces: 5,
-                        price: 200,
-                        img_url: "images/art_image.jpg"
-                    }
-               ]
+                lesson: {
+                    subject: "Art",
+                    location: "France",
+                    spaces: 5,
+                    price: 200,
+                    img_url: "images/art_image.jpg"
+                }
            },
            methods:{
-               addToCart: function(id){
-                if (this.lessons[id].spaces >= 1) {
-                   
-                    // Update the DOM
-                    this.lessons[id].spaces -= 1
-
-                }
-                else{
-                    this.lessons[id].spaces = 0
-                }
+               addToCart: function(){
+                    if (this.lesson.spaces >= 1) {
+                        // Reduce the spaces
+                        this.lesson.spaces -= 1
+                    }
+                    else{
+                        this.lesson.spaces = 0
+                    }
                }
            }
        })
